@@ -1,0 +1,100 @@
+<!-- LINKS FOR DATE -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" xmlns:th="http://www.w3.org/1999/xhtml"/>
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+<main>
+	<div class="container body-content span=8 offset=2">
+		<form class="form-horizontal" th:action="@{/convert}" th:object="${convertData}" method="post">
+			<fieldset>
+				<legend>CURRENCY CONVERTER</legend>
+		
+				<!-- BASE CURRENCY -->
+				<div class="form-group">
+				  	<label class="col-md-4 control-label">Base currency</label>
+			  		<div class="col-md-4">
+			   			<select name="baseCurrency" class="form-control" th:field="*{baseCurrency}">
+					      <option value="PLN">PLN</option>
+					      <option value="USD">USD</option>
+					      <option value="EUR">EUR</option>
+                          <option value="GBP">GBP</option>
+                        </select>
+			  		</div>
+				</div>
+				
+				<!-- AMMOUNT -->
+				<div class="form-group">
+				  	<label class="col-md-4 control-label">Amount</label>  
+		  			<div class="col-md-4">
+			  			<input name="amount" type="number" placeholder="Amount"
+			  			class="form-control" th:field="*{amount}" required="required"/> 
+			  		</div>
+				</div>
+				
+				<!-- TARGET CURRENCY -->
+				<div class="form-group">
+				  	<label class="col-md-4 control-label">Target currency</label>
+				  	<div class="col-md-4">
+				    	<select name="targetCurrency" class="form-control"	th:field="*{targetCurrency}">
+					      <option value="USD">USD</option>
+					      <option value="EUR">EUR</option>
+                          <option value="GBP">GBP</option>
+                          <option value="PLN">PLN</option>
+                        </select>
+			  		</div>
+				</div>
+				
+				<!-- DATE -->
+			 	<div class="form-group ">
+		      		<label class="col-md-4 control-label" for="date">Course date</label>
+		      		<div class="col-md-4">
+		       			<div class="input-group">
+		        			<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+		        			<input class="datePicker" id="date" name="date" placeholder="YYYY/MM/DD"
+		        			 type="text" th:field="*{date}" required="required"/>
+		      			</div>
+		      		</div>
+	   	 		</div>
+				
+				<!-- CONVERT -->
+				<div class="form-group">
+				  	<label class="col-md-5 control-label" for="convert"></label>
+				 	<div class="col-md-5">
+				 		<a class="btn btn-default" th:href="@{/}">CANCEL</a>
+				    	<input type="submit" id="convert" name="convert" class="btn btn-primary" value="CONVERT"/>
+				  	</div>
+				</div>
+				
+				<hr></hr>
+				
+				<!-- CONVERT RESULT -->
+				<div th:if="${convertedAmount}" class="container body-content" style="text-align: center">
+					 <span style="font-size: 20px !important" th:text="*{amount}"></span>
+					 <span style="font-size: 20px !important" th:text="*{baseCurrency}"></span> = 
+					 <span style="font-size: 20px !important" th:text="${convertedAmount}"></span>
+					 <span style="font-size: 20px !important" th:text="*{targetCurrency}"></span>
+				</div>
+				
+				<div th:if="${conversionFailed}" class="ui error message">
+				CONVERSION FAILED: EXCHANGE RATE NOT AVAILABLE</div>
+				
+			</fieldset>
+		</form>
+	</div>
+</main>
+
+<!-- SCRIPT DATE -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+	$(function(){
+	    $('.datePicker').datepicker({
+	        format: 'yyyy-mm-dd',
+	        startDate: '2002-01-02',
+	        endDate: '+0d',
+	        todayHighlight: true,
+	        autoClose: true
+	    });
+	});
+</script>

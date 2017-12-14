@@ -1,0 +1,52 @@
+<main>	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>
+	
+	<div class="container body-container" style="text-align:center">
+	
+		<!-- EURO -->
+		<div class="row">
+			<h3>CURRENT EURO EXCHANGE RATE</h3>
+			<span class="flag-icon flag-icon-eu" style="font-size: 40px"></span>
+				
+				<div th:if="${rateEUR}">
+		    		<b style="font-size: 30px !important" th:text="${rateEUR}">EUR</b> 
+   		    		<b style="font-size: 20px !important">PLN</b>
+	    		</div>
+	    		
+	    		<div th:unless="${rateEUR}">
+    				<b style="font-size: 20px !important">Current Euro data is not available yet</b>
+	    		</div>
+   		</div>
+ 		 		
+		<!-- DOLLAR -->  		
+   		<div class="row">
+			<h3>CURRENT DOLLAR EXCHANGE RATE</h3>
+				<span class="flag-icon flag-icon-us" style="font-size: 40px"></span>
+				
+				<div th:if="${rateUSD}">
+					<b style="font-size: 30px !important" th:text="${rateUSD}">USD</b>
+					<b style="font-size: 20px !important">PLN</b>
+				</div>
+					
+				<div th:unless="${rateUSD}">
+    				<b style="font-size: 20px !important">Current Dollar data is not available yet</b>
+	    		</div>
+		</div>		
+		
+		<!-- POUND -->
+		<div class="row">
+			<h3>CURRENT POUND EXCHANGE RATE</h3>
+			<span class="flag-icon flag-icon-gb" style="font-size: 40px"></span>
+			
+				<div th:if="${rateGBP}">
+		    		<b style="font-size: 30px !important" th:text="${rateGBP}">GBP</b> 
+		    		<b style="font-size: 20px !important">PLN</b>
+	    		</div>
+	    		
+	    		<div th:unless="${rateGBP}">
+    				<b style="font-size: 20px !important">Current Pound data is not available yet</b>
+	    		</div>
+		</div>
+		 
+	</div>
+</main>

@@ -1,0 +1,79 @@
+<!-- LINKS FOR DATE -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+<main>
+	<div class="container body-content span=8 offset=2">
+		<form class="form-horizontal" th:action="@{/statistics}" th:object="${statisticsData}" method="post">
+			<fieldset>
+				<legend>CURRENCY STATISTICS FROM SELECTED DATE</legend>
+				
+				<!-- CURRENCY -->
+				<div class="form-group">
+				  	<label class="col-md-4 control-label" for="base_currency">Currency</label>
+			  		<div class="col-md-4">
+			   			<select id="base_currency" name="currency" class="form-control" th:field="*{currency}">
+					      <option value="USD">USD</option>
+					      <option value="EUR">EUR</option>
+					      <option value="GBP">GBP</option>
+			    		</select>
+			  		</div>
+				</div>
+				
+				<!-- DAYS NUMBER -->
+			 	<div class="form-group ">
+		      		<label class="col-md-4 control-label" for="date">From date</label>
+		      		<div class="col-md-4">
+		       			<div class="input-group">
+		        			<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+		        			<input id="date" class="datePicker" name="date" placeholder="YYYY/MM/DD"
+		        			 type="text" th:field="*{date}" required="required"/>
+		      			</div>
+		      		</div>
+	   	 		</div>
+				
+				<!-- SUBMIT -->
+				<div class="form-group">
+				  	<label class="col-md-5 control-label" for="convert"></label>
+				 	<div class="col-md-5">
+				 		<a class="btn btn-default" th:href="@{/}">CANCEL</a>
+				    	<button id="convert" name="convert" class="btn btn-primary">SUBMIT</button>
+				  	</div>
+				</div>
+				
+				<hr></hr>
+				
+				<!-- STATISTICS RESULT -->
+				<div th:if="${MIN}" class="container body-content" style="text-align: center">
+					 <b style="font-size: 20px !important">MIN:</b>
+					 	<span style="font-size: 20px !important" th:text="${MIN}"></span>
+					 <b style="font-size: 20px !important">MAX:</b>
+					 	<span style="font-size: 20px !important" th:text="${MAX}"></span>  
+					 <b style="font-size: 20px !important">AVG:</b>
+					 	<span style="font-size: 20px !important" th:text="${AVG}"></span>
+					 <b style="font-size: 20px !important">SD:</b>
+						<span style="font-size: 20px !important" th:text="${SD}"></span>
+				</div>
+				
+			</fieldset>
+		</form>
+	</div>
+</main>
+
+<!-- SCRIPT DATE -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+	$(function(){
+	    $('.datePicker').datepicker({
+	        format: 'yyyy-mm-dd',
+	        startDate: '2002-01-02',
+	        endDate: '+0d',
+	        todayHighlight: true,
+	        autoClose: true,
+	        orientation: 'top'
+	    });
+	});
+</script>

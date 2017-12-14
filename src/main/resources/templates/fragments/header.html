@@ -1,0 +1,27 @@
+<header th:fragment="header">
+	<nav class="navbar navbar-inverse" >
+		<div class="container">
+			<div class="navbar-header">
+				<a th:href="@{/}" class="navbar-brand">NBP CURRENCY CALCULATOR</a>
+				
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+					
+			<div class="navbar-collapse collapse">
+				 <ul class="nav navbar-nav navbar-right">
+				 	<li>
+				 		<a th:href="@{/convert}">CALCULATOR</a>
+				 	</li>
+				 	<li>
+				 		<a th:href="@{/statistics}">STATISTICS</a>
+				 	</li>
+			 	</ul>
+			</div>
+				
+		</div>
+	</nav>
+</header>
